@@ -2,30 +2,30 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "products": "Products",
+    "products": "Projects",
     "contact": "Contact"
   },
   "hero": {
     "title": "Energy Town",
-    "subtitle": "Specialized Building Materials Store",
-    "cta": "View Products",
+    "subtitle": "Construction & Development Company",
+    "cta": "View Projects",
     "learnMore": "Learn More"
   },
   "about": {
     "title": "About Us",
-    "description": "Energy Town is a leading company supplying quality cement, wood materials, and other construction materials to Mongolia's construction sector. We have been operating since 2010 and have experience supplying materials for numerous large-scale projects.",
+    "description": "Energy Town is a leading construction and development company in Mongolia, building residential complexes, factories, commercial centers, and other structures. Since 2010, we have successfully completed numerous large-scale projects with a focus on quality, innovative design, and sustainable development.",
     "mission": "Our Vision",
-    "missionText": "To supply high-quality, eco-friendly materials at accessible prices to Mongolia's construction sector",
+    "missionText": "To build every person's dream home and workplace by embracing innovation, quality, and sustainable development in Mongolia's construction sector",
     "values": "Our Values",
     "valuesText": "Quality, Trust, Responsibility, Innovation"
   },
   "products": {
-    "title": "Products",
-    "cement": "Cement",
-    "wood": "Wood Materials",
-    "price": "Price",
+    "title": "Projects",
+    "cement": "Residential",
+    "wood": "Industrial",
+    "price": "Starting from",
     "viewDetails": "View Details",
-    "addToCart": "Add to Cart"
+    "addToCart": "Register Interest"
   },
   "contact": {
     "title": "Contact Us",
