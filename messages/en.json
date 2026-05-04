@@ -19,6 +19,11 @@
     "values": "Our Values",
     "valuesText": "Quality, Trust, Responsibility, Innovation"
   },
+  "floorplan": {
+    "title": "ROOM LAYOUT",
+    "subtitle": "Introduction to 134m2 4-room apartment",
+    "view360": "View 360° Virtual Tour"
+  },
   "products": {
     "title": "Projects",
     "cement": "Residential",
