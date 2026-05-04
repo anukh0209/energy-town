@@ -1,19 +1,25 @@
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import FloorPlan from "@/components/FloorPlan";
-import UnitTypes from "@/components/UnitTypes";
-import Products from "@/components/Products";
-import Contact from "@/components/Contact";
+import VegaHeader from "@/components/VegaHeader";
+import VegaHero from "@/components/VegaHero";
+import VegaFeatures from "@/components/VegaFeatures";
+import VegaLocation from "@/components/VegaLocation";
+import VegaStats from "@/components/VegaStats";
+import VegaVideo from "@/components/VegaVideo";
+import VegaFloorPlan from "@/components/VegaFloorPlan";
+import VegaFooter from "@/components/VegaFooter";
 
 export default function Home() {
   return (
-    <>
-      <Hero />
-      <About />
-      <FloorPlan />
-      <UnitTypes />
-      <Products />
-      <Contact />
-    </>
+    <div className="flex min-h-screen">
+      <VegaHeader />
+      <div className="flex-1">
+        <VegaHero />
+        <VegaFeatures />
+        <VegaLocation />
+        <VegaStats />
+        <VegaVideo />
+        <VegaFloorPlan />
+        <VegaFooter />
+      </div>
+    </div>
   );
 }

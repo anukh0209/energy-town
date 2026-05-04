@@ -3,8 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import ApolloClientProvider from "@/lib/apollo/provider";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -18,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Energy Town - Барилгын материал",
-  description: "Барилгын материалын төрөлжсөн дэлгүүр - Цемент, модон материал",
+  title: "Energy Town - Тодоос тод гэрэлтэнэ",
+  description: "Барилга бүтээн байгуулалтын тэргүүлэгч компани",
   metadataBase: new URL("https://energy-town.vercel.app"),
 };
 
@@ -39,13 +37,9 @@ export default async function LocaleLayout({
       lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full">
         <NextIntlClientProvider messages={messages}>
-          <ApolloClientProvider>
-            <Header locale={locale} />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </ApolloClientProvider>
+          <ApolloClientProvider>{children}</ApolloClientProvider>
         </NextIntlClientProvider>
       </body>
     </html>
