@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Energy Town",
+    "subtitle": "Specialized Building Materials Store",
+    "cta": "View Products",
+    "learnMore": "Learn More"
+  },
+  "about": {
+    "title": "About Us",
+    "description": "Energy Town is a leading company supplying quality cement, wood materials, and other construction materials to Mongolia's construction sector. We have been operating since 2010 and have experience supplying materials for numerous large-scale projects.",
+    "mission": "Our Vision",
+    "missionText": "To supply high-quality, eco-friendly materials at accessible prices to Mongolia's construction sector",
+    "values": "Our Values",
+    "valuesText": "Quality, Trust, Responsibility, Innovation"
+  },
+  "products": {
+    "title": "Products",
+    "cement": "Cement",
+    "wood": "Wood Materials",
+    "price": "Price",
+    "viewDetails": "View Details",
+    "addToCart": "Add to Cart"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "submit": "Send",
+    "address": "Address",
+    "addressText": "Ulaanbaatar, Bayanzurkh district, 26th khoroo",
+    "phoneNumber": "+976 7711 2233",
+    "emailAddress": "info@energytown.mn"
+  },
+  "footer": {
+    "rights": "© 2024 Energy Town. All rights reserved."
+  }
+}
