@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useLocale } from "next-intl";
 
@@ -35,7 +36,15 @@ export default function VegaHeader() {
           </button>
 
           {/* Logo */}
-          <div className="mb-12">
+          <motion.div 
+            className="mb-12"
+            initial={{ x: -30, opacity: 0 }}
+            animate={{ 
+              x: 0, 
+              opacity: 1,
+              transition: { delay: menuOpen ? 0.1 : 0, duration: 0.5 }
+            }}
+          >
             <Link href={`/${locale}`} className="block">
               <h1 className="text-3xl font-oswald font-bold tracking-wider">
                 ENERGY
@@ -43,26 +52,48 @@ export default function VegaHeader() {
                 <span className="text-purple-600">TOWN</span>
               </h1>
             </Link>
-          </div>
+          </motion.div>
 
           {/* Navigation */}
           <nav className="flex-1">
             <ul className="space-y-6">
               {menuItems.map((item, index) => (
-                <li key={index}>
+                <motion.li
+                  key={index}
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={{ 
+                    x: 0, 
+                    opacity: 1,
+                    transition: { 
+                      delay: menuOpen ? 0.2 + index * 0.1 : 0,
+                      duration: 0.4,
+                      ease: "easeOut"
+                    }
+                  }}
+                  className="transform"
+                >
                   <Link
                     href={item.href}
-                    className="font-oswald text-sm tracking-widest hover:text-purple-600 transition-colors"
+                    className="font-oswald text-sm tracking-widest hover:text-purple-600 transition-colors block"
+                    onClick={() => setMenuOpen(false)}
                   >
                     {locale === "mn" ? item.label : item.labelEn}
                   </Link>
-                </li>
+                </motion.li>
               ))}
             </ul>
           </nav>
 
           {/* Contact Info */}
-          <div className="mt-auto space-y-4 text-sm">
+          <motion.div 
+            className="mt-auto space-y-4 text-sm"
+            initial={{ x: -30, opacity: 0 }}
+            animate={{ 
+              x: 0, 
+              opacity: 1,
+              transition: { delay: menuOpen ? 0.6 : 0, duration: 0.5 }
+            }}
+          >
             <a
               href="mailto:info@energytown.mn"
               className="block hover:text-purple-600 transition-colors"
@@ -83,10 +114,18 @@ export default function VegaHeader() {
                 yt
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Language Switcher */}
-          <div className="mt-6 flex gap-3 text-sm">
+          <motion.div 
+            className="mt-6 flex gap-3 text-sm"
+            initial={{ x: -30, opacity: 0 }}
+            animate={{ 
+              x: 0, 
+              opacity: 1,
+              transition: { delay: menuOpen ? 0.7 : 0, duration: 0.5 }
+            }}
+          >
             <Link
               href="/mn"
               className={`${
@@ -107,7 +146,7 @@ export default function VegaHeader() {
             >
               EN
             </Link>
-          </div>
+          </motion.div>
         </div>
       </aside>
 
