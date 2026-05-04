@@ -24,6 +24,14 @@
     "subtitle": "Introduction to 134m2 4-room apartment",
     "view360": "View 360° Virtual Tour"
   },
+  "unitTypes": {
+    "title": "Unit Types",
+    "subtitle": "Room options to suit your needs",
+    "viewFloorPlan": "View Floor Plan",
+    "floorPlan": "Floor Plan",
+    "bedrooms": "bedrooms",
+    "bathrooms": "bathrooms"
+  },
   "products": {
     "title": "Projects",
     "cement": "Residential",
