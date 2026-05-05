@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useLocale } from "next-intl";
 
@@ -159,31 +159,27 @@ export default function VegaHeader() {
       </motion.header>
 
       {/* Mobile Menu Overlay */}
-      <motion.div
-        initial={false}
-        animate={menuOpen ? "open" : "closed"}
-        className="lg:hidden"
-      >
-        {/* Backdrop */}
-        <motion.div
-          variants={{
-            open: { opacity: 1, pointerEvents: "auto" as const },
-            closed: { opacity: 0, pointerEvents: "none" as const },
-          }}
-          transition={{ duration: 0.3 }}
-          className="fixed inset-0 bg-black/60 z-40"
-          onClick={() => setMenuOpen(false)}
-        />
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/60 z-40 lg:hidden"
+              onClick={() => setMenuOpen(false)}
+            />
 
-        {/* Sidebar */}
-        <motion.aside
-          variants={{
-            open: { x: 0 },
-            closed: { x: "-100%" },
-          }}
-          transition={{ type: "spring", damping: 30, stiffness: 300 }}
-          className="fixed left-0 top-0 h-full w-[300px] bg-white z-50 p-8"
-        >
+            {/* Sidebar */}
+            <motion.aside
+              initial={{ x: -300 }}
+              animate={{ x: 0 }}
+              exit={{ x: -300 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="fixed left-0 top-0 h-full w-[300px] bg-white z-50 p-8 lg:hidden"
+            >
           <button
             onClick={() => setMenuOpen(false)}
             className="absolute top-6 right-6 text-2xl hover:text-purple-700 transition-colors"
@@ -212,7 +208,9 @@ export default function VegaHeader() {
             </ul>
           </motion.nav>
         </motion.aside>
-      </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Spacer for desktop */}
       <div className="hidden lg:block" style={{ width: "300px", flexShrink: 0 }} />
