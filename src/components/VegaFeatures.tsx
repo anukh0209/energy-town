@@ -5,52 +5,40 @@ import { useInView } from "react-intersection-observer";
 
 const features = [
   {
-    letter: "V",
-    letterAccent: "ega",
-    title: "VALUE",
-    titleEn: "VALUE",
-    subtitle: "Үнэ цэнэтэй байршил",
-    subtitleEn: "Valuable Location",
-    description:
-      "Улаанбаатар хотын хамгийн үнэ цэнэтэй бүсэд байрших оршин суугчдын тав тухыг бүрэн хангасан цогц төлөвлөлт бүхий чанартай материал, сайн гүйцэтгэлтэй бүтээн байгуулалт нь таны амьдралдаа хийх үнэ цэнэтэй хөрөнгө оруулалт болно.",
-    descriptionEn:
-      "Located in the most valuable area of Ulaanbaatar, our comprehensive planning with quality materials and excellent execution makes this a valuable investment for your life.",
-  },
-  {
     letter: "E",
-    letterAccent: "ngineering",
-    title: "ENGINEERING",
-    titleEn: "ENGINEERING",
-    subtitle: "Чанар",
-    subtitleEn: "Quality",
+    letterAccent: "nergy",
+    title: "ENERGY",
+    subtitle: "Эрчим хүчний шийдэл",
     description:
-      "Евро стандартад нийцсэн хүн болон байгаль орчинд ээлтэй ус, дулаан, цахилгаан зэрэг нөөцүүдийн зохистой хэрэглээг хангах материал тоноглолуудыг төсөлдөө ашиглаж байна.",
-    descriptionEn:
-      "We use materials and equipment that meet European standards, ensuring efficient use of water, heating, and electricity resources while being environmentally friendly.",
+      "Energy Town хотхон нь нарны эрчим хүч, дулааны насос болон ухаалаг эрчим хүчний удирдлагын системийг нэгтгэсэн, эрчим хүчний хэмнэлттэй шинэ үеийн орон сууцны төсөл юм. Бид тогтвортой хөгжлийг эрхэмлэн, байгальд ээлтэй шийдлүүдийг нэвтрүүлж байна.",
+    highlight: "50% эрчим хүч хэмнэлт",
   },
   {
-    letter: "G",
-    letterAccent: "arden",
-    title: "GARDEN",
-    titleEn: "GARDEN",
-    subtitle: "Гадна тохижилт",
-    subtitleEn: "Landscaping",
+    letter: "N",
+    letterAccent: "ature",
+    title: "NATURE",
+    subtitle: "Ногоон орчин",
     description:
-      "Energy Town хотхон нь нийт газрынхаа 70%-д 4 улирлыг санагдуулам 4 өөр төрлийн ландшафт тохижилтыг шийдсэн, бүс нутагтаа хамгийн том ногоон байгууламжтай хотхон болж байна.",
-    descriptionEn:
-      "Energy Town features landscaping on 70% of its land, with four different seasonal landscape designs, making it the complex with the largest green area in the region.",
+      "Нийт газрын 70%-д ногоон байгууламж, цэцэрлэгт хүрээлэн, усан оргилуур, тоглоомын талбай бүхий бүс нутагтаа хамгийн том ногоон зураглалтай хотхон. 30,000 м2 ногоон байгууламж таны эрүүл амьдралын орчин болно.",
+    highlight: "30,000 м2 ногоон байгууламж",
   },
   {
-    letter: "A",
-    letterAccent: "rchitecture",
-    title: "ARCHITECTURE",
-    titleEn: "ARCHITECTURE",
-    subtitle: "Гадна дотор төлөвлөлт, дизайн",
-    subtitleEn: "Exterior & Interior Design",
+    letter: "T",
+    letterAccent: "echnology",
+    title: "TECHNOLOGY",
+    subtitle: "Ухаалаг хотхон",
     description:
-      "Хотын төв дахь шилдэг архитектур төлөвлөлт бүхий цогцолбор хотхон нь гэр бүлийн тань бүхий л гишүүдийн эрүүл, аюулгүй тав тухтай амьдрах гадна болон дотор орчны төлөвлөлттэйгээс гадна экстерьер, интерьер дизайны дахин давтагдашгүй шийдэлтэйгээр бүтээн байгуулагдаж байна.",
-    descriptionEn:
-      "With the best architectural planning in the city center, this complex is built with unique exterior and interior design solutions, creating a healthy and safe living environment for all family members.",
+      "IoT технологид суурилсан ухаалаг хотхон систем, автоматажуулсан орц хаалга, ухаалаг гэрэлтүүлэг, аюулгүй байдлын 24/7 камержуулалт, онлайн төлбөрийн систем бүхий орчин үеийн дэд бүтэц.",
+    highlight: "Ухаалаг хотхон систем",
+  },
+  {
+    letter: "W",
+    letterAccent: "ellness",
+    title: "WELLNESS",
+    subtitle: "Эрүүл амьдрал",
+    description:
+      "Фитнесс төв, сагсан бөмбөгийн талбай, явган болон дугуйн зам, амралтын бүс, йогийн талбай бүхий эрүүл амьдралыг дэмжих цогц дэд бүтэц. Гэр бүлийн бүхий л гишүүдэд зориулсан тав тухтай орчин.",
+    highlight: "Цогц спортын дэд бүтэц",
   },
 ];
 
@@ -63,29 +51,33 @@ export default function VegaFeatures() {
         {features.map((feature, index) => (
           <motion.div
             key={feature.title}
-            initial={{ opacity: 0, y: 40 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: index * 0.15 }}
-            className={`grid grid-cols-1 lg:grid-cols-12 gap-0 ${
-              index % 2 === 1 ? "lg:flex-row-reverse" : ""
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className={`grid grid-cols-1 lg:grid-cols-12 gap-0 border-b border-gray-200 last:border-0 ${
+              index % 2 === 1 ? "lg:flex-row-reverse bg-white" : ""
             }`}
           >
             {/* Letter Column */}
             <div
-              className={`lg:col-span-3 flex items-start justify-center lg:justify-start p-8 lg:p-12 ${
+              className={`lg:col-span-3 flex items-start justify-center lg:justify-start p-10 lg:p-16 ${
                 index % 2 === 1 ? "lg:order-2" : ""
               }`}
             >
               <div className="text-center lg:text-left">
-                <h3 className="font-oswald text-4xl lg:text-5xl">
-                  <span className="text-purple-600 font-bold">{feature.letter}</span>
-                  <span className="text-black">{feature.letterAccent}</span>
+                <h3 className="font-oswald text-5xl lg:text-6xl mb-2">
+                  <span className="text-purple-700 font-bold">{feature.letter}</span>
+                  <span className="text-gray-900 font-light">{feature.letterAccent}</span>
                 </h3>
-                <div className="w-10 h-0.5 bg-black mt-4 mb-4" />
-                <h4
-                  className="font-oswald text-lg tracking-wider"
-                  style={{ color: "#800080" }}
-                >
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="w-16 h-0.5 bg-black mt-6 mb-4 origin-left"
+                />
+                <h4 className="font-oswald text-xl tracking-[0.2em] text-purple-700">
                   {feature.title}
                 </h4>
               </div>
@@ -93,12 +85,39 @@ export default function VegaFeatures() {
 
             {/* Content Column */}
             <div
-              className={`lg:col-span-9 p-8 lg:p-12 ${
+              className={`lg:col-span-9 p-10 lg:p-16 ${
                 index % 2 === 1 ? "lg:order-1" : ""
               }`}
             >
-              <h5 className="font-bold text-lg mb-4">{feature.subtitle}</h5>
-              <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              <motion.h5
+                initial={{ opacity: 0, x: index % 2 === 1 ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="font-oswald text-2xl lg:text-3xl mb-6 text-gray-900"
+              >
+                {feature.subtitle}
+              </motion.h5>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-gray-600 leading-[1.8] text-lg mb-6"
+              >
+                {feature.description}
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="inline-block px-6 py-3 bg-purple-50 border border-purple-200 text-purple-700 font-oswald tracking-wider text-sm"
+              >
+                {feature.highlight}
+              </motion.div>
             </div>
           </motion.div>
         ))}

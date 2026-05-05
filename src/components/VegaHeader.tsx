@@ -1,80 +1,208 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useLocale } from "next-intl";
 
 const menuItems = [
-  { label: "Нүүр", labelEn: "Home", href: "/" },
-  { label: "Танилцуулга", labelEn: "About", href: "/about" },
-  { label: "ДАВУУ ТАЛУУД", labelEn: "Features", href: "#features" },
-  { label: "Зохион байгуулалт", labelEn: "Layout", href: "#layout" },
-  { label: "ХОЛБОО БАРИХ", labelEn: "Contact", href: "/contact" },
+  { label: "НҮҮР", labelEn: "HOME", href: "/" },
+  { label: "ТАНИЛЦУУЛГА", labelEn: "ABOUT", href: "/about" },
+  { label: "ДАВУУ ТАЛУУД", labelEn: "FEATURES", href: "#features" },
+  { label: "ЗОХИОН БАЙГУУЛАЛТ", labelEn: "LAYOUT", href: "#layout" },
+  { label: "ХОЛБОО БАРИХ", labelEn: "CONTACT", href: "/contact" },
 ];
 
 export default function VegaHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const locale = useLocale();
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { x: -60, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
   return (
     <>
-      {/* Vertical Sidebar Menu - Vega City Style */}
+      {/* Desktop Sidebar */}
       <aside
-        className={`fixed left-0 top-0 h-full z-50 bg-white transition-transform duration-500 ease-in-out ${
-          menuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
-        }`}
+        className="hidden lg:flex fixed left-0 top-0 h-full z-50 bg-white flex-col"
         style={{ width: "300px" }}
       >
-        <div className="flex flex-col h-full p-8">
-          {/* Close button */}
+        <div className="flex flex-col h-full p-10">
+          {/* Logo */}
+          <div className="mb-16">
+            <Link href={`/${locale}`} className="block">
+              <div className="font-oswald text-3xl font-bold tracking-wider leading-tight">
+                ENERGY
+                <br />
+                <span className="text-purple-700">TOWN</span>
+              </div>
+              <div className="w-12 h-0.5 bg-purple-700 mt-4" />
+            </Link>
+          </div>
+
+          {/* Navigation */}
+          <nav className="flex-1">
+            <motion.ul
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="space-y-5"
+            >
+              {menuItems.map((item, index) => (
+                <motion.li key={index} variants={itemVariants}>
+                  <Link
+                    href={item.href}
+                    className="font-oswald text-sm tracking-[0.2em] hover:text-purple-700 transition-colors duration-300 block py-1 border-l-2 border-transparent hover:border-purple-700 pl-4 -ml-4"
+                  >
+                    {locale === "mn" ? item.label : item.labelEn}
+                  </Link>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </nav>
+
+          {/* Contact Info */}
+          <div className="mt-auto space-y-5 text-sm">
+            <a
+              href="mailto:info@energytown.mn"
+              className="block text-gray-600 hover:text-purple-700 transition-colors"
+            >
+              info@energytown.mn
+            </a>
+            <p className="text-gray-500 text-xs leading-relaxed">
+              Улаанбаатар хот,
+              <br />Баянзүрх дүүрэг
+            </p>
+            <div className="flex gap-5 pt-2">
+              {["fb", "yt", "ig"].map((social) => (
+                <a
+                  key={social}
+                  href="#"
+                  className="text-gray-400 hover:text-purple-700 transition-colors text-xs font-oswald tracking-wider"
+                >
+                  {social}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Language Switcher */}
+          <div className="mt-8 flex gap-4 text-sm font-oswald">
+            <Link
+              href="/mn"
+              className={`tracking-wider transition-all ${
+                locale === "mn"
+                  ? "font-bold text-purple-700"
+                  : "text-gray-400 hover:text-purple-700"
+              }`}
+            >
+              МН
+            </Link>
+            <span className="text-gray-300">|</span>
+            <Link
+              href="/en"
+              className={`tracking-wider transition-all ${
+                locale === "en"
+                  ? "font-bold text-purple-700"
+                  : "text-gray-400 hover:text-purple-700"
+              }`}
+            >
+              EN
+            </Link>
+          </div>
+        </div>
+      </aside>
+
+      {/* Mobile Header */}
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100"
+      >
+        <div className="flex items-center justify-between px-6 py-4">
+          <button
+            onClick={() => setMenuOpen(true)}
+            className="flex flex-col gap-1.5 group"
+          >
+            <span className="block w-6 h-0.5 bg-black group-hover:bg-purple-700 transition-colors"></span>
+            <span className="block w-6 h-0.5 bg-black group-hover:bg-purple-700 transition-colors"></span>
+          </button>
+
+          <Link href={`/${locale}`} className="font-oswald font-bold text-xl tracking-wider">
+            ENERGY{" "}
+            <span className="text-purple-700">TOWN</span>
+          </Link>
+
+          <div className="w-6"></div>
+        </div>
+      </motion.header>
+
+      {/* Mobile Menu Overlay */}
+      <motion.div
+        initial={false}
+        animate={menuOpen ? "open" : "closed"}
+        className="lg:hidden"
+      >
+        {/* Backdrop */}
+        <motion.div
+          variants={{
+            open: { opacity: 1, pointerEvents: "auto" as const },
+            closed: { opacity: 0, pointerEvents: "none" as const },
+          }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 bg-black/60 z-40"
+          onClick={() => setMenuOpen(false)}
+        />
+
+        {/* Sidebar */}
+        <motion.aside
+          variants={{
+            open: { x: 0 },
+            closed: { x: "-100%" },
+          }}
+          transition={{ type: "spring", damping: 30, stiffness: 300 }}
+          className="fixed left-0 top-0 h-full w-[300px] bg-white z-50 p-8"
+        >
           <button
             onClick={() => setMenuOpen(false)}
-            className="lg:hidden absolute top-6 right-6 text-2xl"
+            className="absolute top-6 right-6 text-2xl hover:text-purple-700 transition-colors"
           >
             &#10005;
           </button>
 
-          {/* Logo */}
-          <motion.div 
-            className="mb-12"
-            initial={{ x: -30, opacity: 0 }}
-            animate={{ 
-              x: 0, 
-              opacity: 1,
-              transition: { delay: menuOpen ? 0.1 : 0, duration: 0.5 }
-            }}
+          <motion.nav
+            variants={containerVariants}
+            initial="hidden"
+            animate={menuOpen ? "visible" : "hidden"}
+            className="mt-16"
           >
-            <Link href={`/${locale}`} className="block">
-              <h1 className="text-3xl font-oswald font-bold tracking-wider">
-                ENERGY
-                <br />
-                <span className="text-purple-600">TOWN</span>
-              </h1>
-            </Link>
-          </motion.div>
-
-          {/* Navigation */}
-          <nav className="flex-1">
             <ul className="space-y-6">
               {menuItems.map((item, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ x: -50, opacity: 0 }}
-                  animate={{ 
-                    x: 0, 
-                    opacity: 1,
-                    transition: { 
-                      delay: menuOpen ? 0.2 + index * 0.1 : 0,
-                      duration: 0.4,
-                      ease: "easeOut"
-                    }
-                  }}
-                  className="transform"
-                >
+                <motion.li key={index} variants={itemVariants}>
                   <Link
                     href={item.href}
-                    className="font-oswald text-sm tracking-widest hover:text-purple-600 transition-colors block"
+                    className="font-oswald text-lg tracking-[0.15em] hover:text-purple-700 transition-colors"
                     onClick={() => setMenuOpen(false)}
                   >
                     {locale === "mn" ? item.label : item.labelEn}
@@ -82,102 +210,11 @@ export default function VegaHeader() {
                 </motion.li>
               ))}
             </ul>
-          </nav>
+          </motion.nav>
+        </motion.aside>
+      </motion.div>
 
-          {/* Contact Info */}
-          <motion.div 
-            className="mt-auto space-y-4 text-sm"
-            initial={{ x: -30, opacity: 0 }}
-            animate={{ 
-              x: 0, 
-              opacity: 1,
-              transition: { delay: menuOpen ? 0.6 : 0, duration: 0.5 }
-            }}
-          >
-            <a
-              href="mailto:info@energytown.mn"
-              className="block hover:text-purple-600 transition-colors"
-            >
-              info@energytown.mn
-            </a>
-            <a
-              href="#"
-              className="block hover:text-purple-600 transition-colors"
-            >
-              Улаанбаатар хот
-            </a>
-            <div className="flex gap-4 pt-4">
-              <a href="#" className="hover:text-purple-600 transition-colors">
-                fb
-              </a>
-              <a href="#" className="hover:text-purple-600 transition-colors">
-                yt
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Language Switcher */}
-          <motion.div 
-            className="mt-6 flex gap-3 text-sm"
-            initial={{ x: -30, opacity: 0 }}
-            animate={{ 
-              x: 0, 
-              opacity: 1,
-              transition: { delay: menuOpen ? 0.7 : 0, duration: 0.5 }
-            }}
-          >
-            <Link
-              href="/mn"
-              className={`${
-                locale === "mn"
-                  ? "font-bold text-purple-600"
-                  : "opacity-60 hover:opacity-100"
-              }`}
-            >
-              МН
-            </Link>
-            <Link
-              href="/en"
-              className={`${
-                locale === "en"
-                  ? "font-bold text-purple-600"
-                  : "opacity-60 hover:opacity-100"
-              }`}
-            >
-              EN
-            </Link>
-          </motion.div>
-        </div>
-      </aside>
-
-      {/* Mobile Header */}
-      <header className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-sm border-b">
-        <div className="flex items-center justify-between px-6 py-4">
-          <button
-            onClick={() => setMenuOpen(true)}
-            className="flex flex-col gap-1.5"
-          >
-            <span className="block w-6 h-0.5 bg-black"></span>
-            <span className="block w-6 h-0.5 bg-black"></span>
-          </button>
-
-          <Link href={`/${locale}`} className="font-oswald font-bold text-xl">
-            ENERGY TOWN
-          </Link>
-
-          <div className="w-6"></div>
-        </div>
-      </header>
-
-      {/* Overlay for mobile */}
-      {menuOpen && (
-        <div
-          className="lg:hidden fixed inset-0 bg-black/50 z-40"
-          onClick={() => setMenuOpen(false)}
-        />
-      )}
-
-      {/* Spacer for desktop sidebar */}
+      {/* Spacer for desktop */}
       <div className="hidden lg:block" style={{ width: "300px", flexShrink: 0 }} />
     </>
   );
